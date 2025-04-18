@@ -4,7 +4,6 @@ import { getAllTodos } from "../api/todos"
 import { queryClient } from '../queryClient.js'
 
 
-//eslint-disable-next-line react-refresh/only-export-components
 export async function loader() {
     return queryClient.fetchQuery({
         queryKey:['todos'],
