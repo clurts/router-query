@@ -1,18 +1,28 @@
 import { useLoaderData } from "react-router"
+import { Link } from "react-router"
+import { getAllTodos } from "../api/todos"
+import { queryClient } from '../queryClient.js'
+
 
 export async function loader() {
-    let res = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=10")
-    return await res.json()
+    return queryClient.fetchQuery({
+        queryKey:['todos'],
+        queryFn: getAllTodos
+    })
 }
 
-export default function Home() {
 
-    const todos = useLoaderData(loader)
-    console.log(todos)
+export default function Home() {
+    const todos = useLoaderData()
+
     return (
         <>
-        <h1>Home</h1>
-        {todos.map(todo => <p>{todo.title}</p>)}
+            <h1>React Query Home</h1>
+            {todos.map(todo => (
+                <Link to={`/todo/${todo.id}`} key={todo.id}>
+                    <p>{todo.title}</p>
+                </Link>           
+            ))}
         </>
     )
 }
