@@ -5,7 +5,9 @@ import {
 
 import './App.css'
 import Layout from "./Layout";
-import Home, { loader as homeLoader } from "./pages/Home"
+// import Home, { loader as homeLoader } from "./pages/Home"
+import Home, { loader as homeLoader } from "./pages/OtherHome"
+import Todo, { getSingleTodo } from "./pages/todo";
 import About from "./pages/About";
 
 function App() {
@@ -18,7 +20,12 @@ function App() {
         {
           index: true,
           element: <Home />,
-          loader: homeLoader,
+          loader: homeLoader
+        },
+        {
+          path: "todo/:todoId",
+          element: <Todo />,
+          loader: getSingleTodo
         },
         {
           path: "about",

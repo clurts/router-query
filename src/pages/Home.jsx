@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router"
+
 export async function loader() {
-    let res = await fetch("https://jsonplaceholder.typicode.com/posts")
+    let res = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=10")
     return await res.json()
 }
 
