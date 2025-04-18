@@ -5,8 +5,7 @@ import {
 
 import './App.css'
 import Layout from "./Layout";
-// import Home, { loader as homeLoader } from "./pages/Home"
-import Home, { loader as homeLoader } from "./pages/OtherHome"
+import Home, { loader as homeLoader } from "./pages/Home"
 import Todo, { getSingleTodo } from "./pages/todo";
 import About from "./pages/About";
 
