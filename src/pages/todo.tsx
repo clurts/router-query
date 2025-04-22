@@ -1,37 +1,30 @@
 import { useLoaderData } from "react-router"
-import { useQuery } from "@tanstack/react-query"
+import { queryClient } from "../queryClient"
+import { getSingleTodo } from "../api/todos"
 import React from "react"
 
 
-export async function getSingleTodo({ params }) {
-    let response = await fetch(`https://jsonplaceholder.typicode.com/todos/${params.todoId}`)
-    if (!response.ok) {
-        throw new Response("Not Found", { status: 404 })
-    }
-    let todo = await response.json()
-    return todo
+export async function loader({ params }) {
+    return queryClient.fetchQuery({
+            queryKey:['todos', params.id],
+            queryFn: () => getSingleTodo(params.id),
+        })
 }
 
 export default function Todo() {
-    const preLoadedTodo = useLoaderData()
+    const todo = useLoaderData()
 
-    const { data: todo, isLoading, error } = useQuery({
-        queryKey: ["todo", preLoadedTodo.id],
-        queryFn: () => getSingleTodo({ params: { id: preLoadedTodo.id } }),
-        initialData: preLoadedTodo,
-    })
+    console.log(todo)
 
   return (
     <div>
         <h1>Todo</h1>
-        {isLoading && <p>Loading...</p>}
-        {error && <p>{error.message}</p>}
-        {todo && (
+        
             <article>
             <h2>{todo.title}</h2>
             <p>{todo.completed ? "Completed" : "Not Completed"}</p>
             </article>
-        )}
+       
     </div>
   )
 }
