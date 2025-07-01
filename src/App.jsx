@@ -3,11 +3,12 @@ import {
   RouterProvider,
 } from "react-router";
 
-import './App.css'
 import Layout from "./Layout";
 import Home, { loader as homeLoader } from "./pages/Home"
-import Todo, { loader as singleLoader } from "./pages/todo";
+import Todo, {loader as todoLoader} from "./pages/todo";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
+import { createContactMessage } from "./api/contact";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,13 +23,18 @@ function App() {
           loader: homeLoader
         },
         {
-          path: "todo/:id",
+          path: "todo/:todoId",
           element: <Todo />,
-          loader: singleLoader
+          loader: todoLoader
         },
         {
           path: "about",
           element: <About />
+        },
+        {
+          path: "contact",
+          element: <Contact />,
+          action: createContactMessage
         }
       ]
     }
