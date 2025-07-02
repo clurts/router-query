@@ -20,7 +20,7 @@ export default function Home() {
             <h1>React Query Home</h1>
             {todos.map(todo => (
                 <Link to={`/todo/${todo.id}`} key={todo.id}>
-                    <p>todo: {todo.title} </p>
+                    <p>{todo.title} </p>
                 </Link>           
             ))}
         </>
