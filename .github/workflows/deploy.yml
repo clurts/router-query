@@ -31,4 +31,4 @@ jobs:
           username: sv_nielsenoglunddk
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: /
+          dry-run: true
