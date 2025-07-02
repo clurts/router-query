@@ -24,10 +24,10 @@ jobs:
       - name: Byg React app
         run: npm run build
 
-      - name: Upload til FTP-server
-        uses: SamKirkland/FTP-Deploy-Action@v4
+      - name: ftp-upload-action
+        uses: GenieTim/ftp-action@v4.0.1
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
+          host: ${{ secrets.FTP_SERVER }}
+          user: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: dist
+          localDir: dist
