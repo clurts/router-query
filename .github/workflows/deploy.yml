@@ -1,0 +1,39 @@
+# .github/workflows/deploy.yml
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout kode
+        uses: actions/checkout@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Installer afhængigheder
+        run: npm install
+
+      - name: Byg React app
+        run: npm run build
+
+      - name: List indhold i dist-mappen
+        run: ls -R ./dist
+
+      - name: ftp-upload-action
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          protocol: ftp
+          port: 21
+          server: php55serv2.webhosting.dk
+          username: sv_nielsenoglunddk
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          dry-run: false

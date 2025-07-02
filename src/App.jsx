@@ -3,7 +3,6 @@ import {
   RouterProvider,
 } from "react-router";
 
-import './App.css'
 import Layout from "./Layout";
 import Home from "./pages/Home"
 import Todo, { loader as singleLoader } from "./pages/todo";
@@ -28,7 +27,7 @@ function App() {
 
         },
         {
-          path: "todo/:id",
+          path: "todo/:todoId",
           element: <Todo />,
           loader: getSingleTodo
         },
