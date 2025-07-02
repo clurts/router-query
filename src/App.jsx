@@ -5,12 +5,12 @@ import {
 
 import Layout from "./Layout";
 import Home from "./pages/Home"
-import Todo, { loader as singleLoader } from "./pages/todo";
+import Todo from "./pages/todo";
 import About from "./pages/About";
 import Loader from "./Loading";
 import NotFound from "./pages/NotFound";
 import { getTodos, getSingleTodo } from "./api/todos";
-import Contact from "./pages/contact";
+import Contact from "./pages/Contact";
 
 function App() {
   const router = createBrowserRouter([
