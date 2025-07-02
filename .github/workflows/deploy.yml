@@ -30,6 +30,8 @@ jobs:
       - name: ftp-upload-action
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
+          protocol: ftp
+          port: 21
           server: php55serv2.webhosting.dk
           username: sv_nielsenoglunddk
           password: ${{ secrets.FTP_PASSWORD }}
