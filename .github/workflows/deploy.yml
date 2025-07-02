@@ -24,6 +24,9 @@ jobs:
       - name: Byg React app
         run: npm run build
 
+      - name: List indhold i dist-mappen
+        run: ls -R ./dist
+
       - name: ftp-upload-action
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
