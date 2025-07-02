@@ -1,19 +1,27 @@
 import { useLoaderData } from "react-router"
 import { Link } from "react-router"
-import { getAllTodos } from "../api/todos"
+import { getTodos } from "../api/todos"
 import { queryClient } from '../queryClient.js'
+import { useQuery } from "@tanstack/react-query"
+import { use, useEffect } from "react";
 
 
-export async function loader() {
-    return queryClient.fetchQuery({
-        queryKey:['todos'],
-        queryFn: getAllTodos
-    })
-}
+// export async function loader() {
+//     return queryClient.fetchQuery({
+//         queryKey:['todos'],
+//         queryFn: getTodos
+//     })
+// }
 
 
 export default function Home() {
     const todos = useLoaderData()
+    useQuery({
+        queryKey: ['todos'],
+        initialData: todos
+    })
+
+
 
     return (
         <>

@@ -5,9 +5,13 @@ import {
 
 import './App.css'
 import Layout from "./Layout";
-import Home, { loader as homeLoader } from "./pages/Home"
+import Home from "./pages/Home"
 import Todo, { loader as singleLoader } from "./pages/todo";
 import About from "./pages/About";
+import Loader from "./Loading";
+import NotFound from "./pages/NotFound";
+import { getTodos, getSingleTodo } from "./api/todos";
+import Contact from "./pages/contact";
 
 function App() {
   const router = createBrowserRouter([
@@ -15,24 +19,33 @@ function App() {
     {
       path: "/",
       element: <Layout />,
+      hydrateFallbackElement: <Loader />,
       children: [
         {
           index: true,
           element: <Home />,
-          loader: homeLoader
+          loader: getTodos
+
         },
         {
           path: "todo/:id",
           element: <Todo />,
-          loader: singleLoader
+          loader: getSingleTodo
         },
         {
           path: "about",
           element: <About />
+        },
+        {
+          path: "contact", 
+          element: <Contact />
+        },
+        {
+          path: "*",
+          element: <NotFound />
         }
       ]
     }
-
   ])
 
   return <RouterProvider router={router}/>

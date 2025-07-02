@@ -5,6 +5,7 @@ import React from "react"
 
 
 export async function loader({ params }) {
+  console.log(params)
     return queryClient.fetchQuery({
             queryKey:['todos', params.id],
             queryFn: () => getSingleTodo(params.id),
@@ -12,6 +13,7 @@ export async function loader({ params }) {
 }
 
 export default function Todo() {
+  
     const todo = useLoaderData()
 
     console.log(todo)
