@@ -14,10 +14,11 @@ export async function getTodos() {
   
 
   export async function getSingleTodo({ params }) {
+    console.log("Fetching single todo with params:", params);
     return queryClient.fetchQuery({
-      queryKey: ["todo", params.id],
+      queryKey: ["todo", params.todoId],
       queryFn: async () => {
-        const res = await fetch(`https://jsonplaceholder.typicode.com/todos/${params.id}`);
+        const res = await fetch(`https://jsonplaceholder.typicode.com/todos/${params.todoId}`);
         if (!res.ok) throw new Error("Failed to fetch todo");
         return res.json();
       },
